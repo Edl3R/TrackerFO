@@ -1,20 +1,21 @@
 import UIKit
 
 final class WeekdayCell: UITableViewCell {
-    static let reuseIdentifier = "WeekdayCell" // Идентификатор переиспользованной ячейки
+    static let reuseIdentifier = "WeekdayCell"
     
     private let titleLabel = UILabel()
     private let daySwitch = UISwitch()
     
-    var onSwitchChanged: ((Bool) -> Void)? // closure, которое передает true/false во внешний код
+    var onSwitchChanged: ((Bool) -> Void)?
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) { // инициализатор
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder){
-        fatalError("init(coder:) has not been implemented")
+        nil
     }
     
     private func setupUI() {
@@ -37,13 +38,13 @@ final class WeekdayCell: UITableViewCell {
         accessoryView = daySwitch
     }
     
-    func configure(day: Weekday, isOn: Bool) { // метод для настройки ячейки извне.
-        titleLabel.text = day.title // берём название дня из enum.
-        daySwitch.isOn = isOn //устанавливаем состояние переключателя.
+    func configure(day: Weekday, isOn: Bool) {
+        titleLabel.text = day.title
+        daySwitch.isOn = isOn
         
     }
     
     @objc private func switchChanged() {
-        onSwitchChanged?(daySwitch.isOn) //если closure установлен — передаём новое состояние наружу.
+        onSwitchChanged?(daySwitch.isOn) 
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-enum Weekday: Int, CaseIterable {
+enum Weekday: Int, Codable, CaseIterable {
     case monday = 1
     case tuesday
     case wednesday
